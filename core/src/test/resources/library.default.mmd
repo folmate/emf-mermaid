@@ -1,0 +1,33 @@
+classDiagram
+direction TB
+class BookCategory {
+    <<enumeration>>
+    FICTION
+    NONFICTION
+    REFERENCE
+}
+class Identifiable {
+    <<interface>>
+    +id : EString
+}
+class Item {
+    <<abstract>>
+}
+class Book {
+    +title : EString
+    +isbn : ISBN@java.lang.String
+    +tags : EString [0..*]
+    +category : BookCategory
+    +matches(query : EString) : EBoolean
+}
+class Author {
+    +name : EString
+}
+class Library {
+}
+Item <|-- Book
+Identifiable <|-- Book
+Book "0..*" --> "1..*" Author : authors
+Author "1..*" --> "0..*" Book : books
+Library *-- "0..*" Book : books
+Library *-- "0..*" Author : authors

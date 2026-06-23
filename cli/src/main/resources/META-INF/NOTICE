@@ -1,0 +1,26 @@
+ecore2mermaid
+Copyright contributors to the ecore2mermaid project.
+
+This product includes software developed by third parties.
+
+--------------------------------------------------------------------------------
+Eclipse Modeling Framework (EMF)
+  org.eclipse.emf:org.eclipse.emf.ecore
+  org.eclipse.emf:org.eclipse.emf.common
+  org.eclipse.emf:org.eclipse.emf.ecore.xmi
+  Copyright (c) Eclipse Foundation and others.
+  License: Eclipse Public License 2.0
+  Full text: META-INF/licenses/EPL-2.0.txt
+  Source:    https://repo.maven.apache.org/maven2/org/eclipse/emf/
+
+  The EMF artifacts also contain code derived from XML4J and Xerces2,
+  Copyright 1999-2010 The Apache Software Foundation. See the about.html
+  file bundled within each EMF jar for details.
+
+--------------------------------------------------------------------------------
+JCommander
+  org.jcommander:jcommander
+  Copyright (c) Cedric Beust and contributors.
+  License: Apache License 2.0
+  Full text: META-INF/licenses/Apache-2.0.txt
+  Source:    https://github.com/cbeust/jcommander
