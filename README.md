@@ -38,7 +38,7 @@ java -jar ecore2mermaid-<version>.jar [options] <input.ecore>
 | `--no-operations` | off | Exclude EOperations from the diagram |
 | `--full-names` | off | Use fully-qualified class names as node identifiers |
 | `--collapse-opposites` | off | Render bidirectional reference pairs as a single edge |
-| `--realize-interfaces` | off | Use dashed realization arrows (`<|..`) for interface supertypes |
+| `--realize-interfaces` | off | Use dashed realization arrows (`<\|..`) for interface supertypes |
 | `--no-external` | off | Skip edges to types outside the input scope instead of emitting stub nodes |
 | `--theme <name>` | — | Prepend a Mermaid `%%{init}%%` theme line |
 | `-h, --help` | — | Show usage |
