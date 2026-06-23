@@ -1,7 +1,7 @@
-package io.ecore2mermaid.cli;
+package com.folmate.ecore2mermaid.cli;
 
 import com.beust.jcommander.ParameterException;
-import io.ecore2mermaid.*;
+import com.folmate.ecore2mermaid.*;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -13,7 +13,7 @@ import java.util.List;
 public class Main {
 
     static final String DIAG_PREFIX = "%% [ecore2mermaid] ";
-    private static final String VERSION = "0.0.0";
+    private static final String VERSION = "0.0.1";
 
     public static void main(String[] args) {
         CliArgs cli;

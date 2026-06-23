@@ -1,9 +1,9 @@
-package io.ecore2mermaid.cli;
+package com.folmate.ecore2mermaid.cli;
 
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.ParameterException;
-import io.ecore2mermaid.GeneratorOptions;
+import com.folmate.ecore2mermaid.GeneratorOptions;
 
 import java.util.List;
 

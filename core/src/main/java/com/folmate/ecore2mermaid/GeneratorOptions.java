@@ -1,4 +1,4 @@
-package io.ecore2mermaid;
+package com.folmate.ecore2mermaid;
 
 public final class GeneratorOptions {
     private final String direction;

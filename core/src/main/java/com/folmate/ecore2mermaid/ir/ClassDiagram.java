@@ -1,4 +1,4 @@
-package io.ecore2mermaid.ir;
+package com.folmate.ecore2mermaid.ir;
 
 import java.util.List;
 

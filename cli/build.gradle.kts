@@ -16,7 +16,7 @@ dependencies {
 }
 
 application {
-    mainClass.set("io.ecore2mermaid.cli.Main")
+    mainClass.set("com.folmate.ecore2mermaid.cli.Main")
 }
 
 // Give the thin jar a classifier so it doesn't clash with the fat jar filename.
@@ -39,7 +39,7 @@ tasks.named<ShadowJar>("shadowJar") {
 
     manifest {
         attributes(
-            "Main-Class" to "io.ecore2mermaid.cli.Main",
+            "Main-Class" to "com.folmate.ecore2mermaid.cli.Main",
             "Implementation-Title" to "ecore2mermaid",
             "Implementation-Version" to project.version,
         )

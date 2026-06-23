@@ -1,4 +1,4 @@
-package io.ecore2mermaid;
+package com.folmate.ecore2mermaid;
 
 import org.eclipse.emf.ecore.*;
 import org.junit.jupiter.api.BeforeAll;
