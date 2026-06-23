@@ -11,3 +11,4 @@ build/
 # Compiled output
 *.class
 *.jar
+!gradle/wrapper/gradle-wrapper.jar
