@@ -1,4 +1,28 @@
+plugins {
+    `maven-publish`
+}
+
 val emfVersion: String by project
+
+version = "0.0.1"
+
+publishing {
+    publications {
+        create<MavenPublication>("mavenJava") {
+            from(components["java"])
+        }
+    }
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/folmate/emf-mermaid")
+            credentials {
+                username = System.getenv("GITHUB_ACTOR")
+                password = System.getenv("GITHUB_TOKEN")
+            }
+        }
+    }
+}
 
 dependencies {
     implementation("org.eclipse.emf:org.eclipse.emf.ecore:$emfVersion")
