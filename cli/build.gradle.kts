@@ -5,8 +5,6 @@ plugins {
     id("com.gradleup.shadow") version "8.3.6"
 }
 
-version = "0.0.0"
-
 dependencies {
     implementation(project(":core"))
     implementation("org.jcommander:jcommander:2.0")

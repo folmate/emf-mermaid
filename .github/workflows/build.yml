@@ -35,7 +35,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: core
-          path: core/build/libs/core.jar
+          path: core/build/libs/core-*.jar
           if-no-files-found: error
 
       - name: Upload CLI fat jar

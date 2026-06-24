@@ -13,7 +13,12 @@ import java.util.List;
 public class Main {
 
     static final String DIAG_PREFIX = "%% [ecore2mermaid] ";
-    private static final String VERSION = "0.0.1";
+    private static final String VERSION;
+
+    static {
+        String v = Main.class.getPackage().getImplementationVersion();
+        VERSION = v != null ? v : "unknown";
+    }
 
     public static void main(String[] args) {
         CliArgs cli;

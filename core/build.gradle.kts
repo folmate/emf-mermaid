@@ -4,8 +4,6 @@ plugins {
 
 val emfVersion: String by project
 
-version = "0.0.1"
-
 publishing {
     publications {
         create<MavenPublication>("mavenJava") {
