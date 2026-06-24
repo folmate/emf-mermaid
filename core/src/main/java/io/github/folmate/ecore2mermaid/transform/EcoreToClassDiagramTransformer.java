@@ -1,9 +1,9 @@
-package com.folmate.ecore2mermaid.transform;
+package io.github.folmate.ecore2mermaid.transform;
 
-import com.folmate.ecore2mermaid.Diagnostic;
-import com.folmate.ecore2mermaid.GeneratorOptions;
-import com.folmate.ecore2mermaid.Severity;
-import com.folmate.ecore2mermaid.ir.*;
+import io.github.folmate.ecore2mermaid.Diagnostic;
+import io.github.folmate.ecore2mermaid.GeneratorOptions;
+import io.github.folmate.ecore2mermaid.Severity;
+import io.github.folmate.ecore2mermaid.ir.*;
 import org.eclipse.emf.ecore.*;
 
 import java.util.*;

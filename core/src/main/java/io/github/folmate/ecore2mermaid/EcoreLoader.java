@@ -1,4 +1,4 @@
-package com.folmate.ecore2mermaid;
+package io.github.folmate.ecore2mermaid;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;

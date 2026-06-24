@@ -1,8 +1,8 @@
-package com.folmate.ecore2mermaid;
+package io.github.folmate.ecore2mermaid;
 
-import com.folmate.ecore2mermaid.emit.MermaidClassDiagramEmitter;
-import com.folmate.ecore2mermaid.ir.ClassDiagram;
-import com.folmate.ecore2mermaid.transform.EcoreToClassDiagramTransformer;
+import io.github.folmate.ecore2mermaid.emit.MermaidClassDiagramEmitter;
+import io.github.folmate.ecore2mermaid.ir.ClassDiagram;
+import io.github.folmate.ecore2mermaid.transform.EcoreToClassDiagramTransformer;
 import org.eclipse.emf.ecore.EPackage;
 
 import java.util.Collection;

@@ -1,7 +1,7 @@
-package com.folmate.ecore2mermaid.cli;
+package io.github.folmate.ecore2mermaid.cli;
 
 import com.beust.jcommander.ParameterException;
-import com.folmate.ecore2mermaid.*;
+import io.github.folmate.ecore2mermaid.*;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
