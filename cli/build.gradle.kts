@@ -5,6 +5,10 @@ plugins {
     id("com.gradleup.shadow") version "8.3.6"
 }
 
+tasks.withType<JavaCompile> {
+    options.release.set(11)
+}
+
 dependencies {
     implementation(project(":core"))
     implementation("org.jcommander:jcommander:2.0")
