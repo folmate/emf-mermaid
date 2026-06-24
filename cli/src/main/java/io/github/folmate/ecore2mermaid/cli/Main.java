@@ -4,11 +4,12 @@ import com.beust.jcommander.ParameterException;
 import io.github.folmate.ecore2mermaid.*;
 
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.FileOutputStream;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Main {
 
@@ -62,11 +63,12 @@ public class Main {
 
         List<String> diagLines = result.diagnostics().stream()
                 .map(d -> DIAG_PREFIX + d.severity() + " [" + d.code() + "] " + d.message())
-                .toList();
+                .collect(Collectors.toList());
 
         if (cli.outputPath() != null) {
-            try {
-                Files.writeString(Path.of(cli.outputPath()), result.diagram(), StandardCharsets.UTF_8);
+            try (OutputStreamWriter writer = new OutputStreamWriter(
+                    new FileOutputStream(cli.outputPath()), StandardCharsets.UTF_8)) {
+                writer.write(result.diagram());
             } catch (IOException e) {
                 System.err.println("ERROR: Cannot write to output file: " + e.getMessage());
                 return 1;

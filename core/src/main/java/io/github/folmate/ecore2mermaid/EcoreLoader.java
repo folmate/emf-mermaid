@@ -46,9 +46,9 @@ public final class EcoreLoader {
         }
 
         List<EPackage> packages = new ArrayList<>();
-        for (var obj : resource.getContents()) {
-            if (obj instanceof EPackage pkg) {
-                packages.add(pkg);
+        for (Object obj : resource.getContents()) {
+            if (obj instanceof EPackage) {
+                packages.add((EPackage) obj);
             }
         }
 

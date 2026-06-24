@@ -11,6 +11,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -29,7 +30,7 @@ class LibraryDiagramTest {
     private static String golden(String name) throws IOException, URISyntaxException {
         URL url = LibraryDiagramTest.class.getClassLoader().getResource(name);
         assertNotNull(url, name + " not found on classpath");
-        return Files.readString(Paths.get(url.toURI()), StandardCharsets.UTF_8);
+        return new String(Files.readAllBytes(Paths.get(url.toURI())), StandardCharsets.UTF_8);
     }
 
     @Test
@@ -48,7 +49,7 @@ class LibraryDiagramTest {
                 "Expected no diagnostics: " + result.diagnostics());
         assertEquals(golden("library.collapsed.mmd"), result.diagram());
         // Verify only one edge for the Book/Author pair
-        long authorBookEdgeCount = result.diagram().lines()
+        long authorBookEdgeCount = Arrays.stream(result.diagram().split("\n", -1))
                 .filter(l -> l.contains("books / authors") || l.contains("authors / books"))
                 .count();
         assertEquals(1, authorBookEdgeCount, "Collapsed opposite pair should appear exactly once");

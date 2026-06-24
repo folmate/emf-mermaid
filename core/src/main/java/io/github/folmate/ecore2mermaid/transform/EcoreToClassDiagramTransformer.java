@@ -10,7 +10,18 @@ import java.util.*;
 
 public final class EcoreToClassDiagramTransformer {
 
-    public record Result(ClassDiagram diagram, List<Diagnostic> diagnostics) {}
+    public static final class Result {
+        private final ClassDiagram diagram;
+        private final List<Diagnostic> diagnostics;
+
+        public Result(ClassDiagram diagram, List<Diagnostic> diagnostics) {
+            this.diagram = diagram;
+            this.diagnostics = diagnostics;
+        }
+
+        public ClassDiagram diagram() { return diagram; }
+        public List<Diagnostic> diagnostics() { return diagnostics; }
+    }
 
     public Result transform(Collection<EPackage> packages, GeneratorOptions opts) {
         List<Diagnostic> diagnostics = new ArrayList<>();
@@ -31,7 +42,7 @@ public final class EcoreToClassDiagramTransformer {
         }
 
         Set<EClassifier> needsQualified = new LinkedHashSet<>();
-        for (var entry : bySimpleName.entrySet()) {
+        for (Map.Entry<String, List<EClassifier>> entry : bySimpleName.entrySet()) {
             if (entry.getValue().size() > 1) {
                 needsQualified.addAll(entry.getValue());
                 diagnostics.add(new Diagnostic(Severity.WARN, "E2M_NAME_COLLISION",
@@ -50,9 +61,11 @@ public final class EcoreToClassDiagramTransformer {
         Set<String> collapsedPairs = new LinkedHashSet<>();
 
         for (EClassifier classifier : allClassifiers) {
-            if (classifier instanceof EClass eClass) {
+            if (classifier instanceof EClass) {
+                EClass eClass = (EClass) classifier;
                 nodes.add(buildClassNode(eClass, opts, needsQualified, inScope, diagnostics));
-            } else if (classifier instanceof EEnum eEnum) {
+            } else if (classifier instanceof EEnum) {
+                EEnum eEnum = (EEnum) classifier;
                 nodes.add(buildEnumNode(eEnum, needsQualified));
             }
             // EDataType (non-enum) has no node
@@ -60,7 +73,8 @@ public final class EcoreToClassDiagramTransformer {
 
         // Build edges after all nodes declared
         for (EClassifier classifier : allClassifiers) {
-            if (classifier instanceof EClass eClass) {
+            if (classifier instanceof EClass) {
+                EClass eClass = (EClass) classifier;
                 buildEdges(eClass, opts, needsQualified, inScope, nodes, edges, collapsedPairs, diagnostics);
             }
         }
@@ -117,7 +131,6 @@ public final class EcoreToClassDiagramTransformer {
                                  List<Diagnostic> diagnostics) {
         String id = nodeId(eClass, needsQualifiedSet, opts);
         String label = nodeLabel(eClass, needsQualifiedSet, opts);
-        String idForLabel = id;
         String displayLabel = id.equals(label) ? null : label;
 
         String stereotype;
@@ -150,7 +163,6 @@ public final class EcoreToClassDiagramTransformer {
         // Use simple name for display; qualify only if collision
         String id = needsQualifiedSet.contains(eEnum)
                 ? sanitize(qualifiedName(eEnum)) : sanitize(eEnum.getName());
-        String label = id; // enum display = id (no label override needed for simple case)
 
         List<String> members = new ArrayList<>();
         for (EEnumLiteral lit : eEnum.getELiterals()) {
@@ -183,14 +195,15 @@ public final class EcoreToClassDiagramTransformer {
     private String typeRef(EClassifier type) {
         if (type == null) return "void";
         if (type instanceof EEnum) return type.getName();
-        if (type instanceof EDataType dt) {
+        if (type instanceof EDataType) {
+            EDataType dt = (EDataType) type;
             if (dt.getEPackage() == EcorePackage.eINSTANCE) {
                 // built-in Ecore datatype
                 return type.getName();
             }
             // Custom EDataType
             String ic = dt.getInstanceClassName();
-            if (ic == null || ic.isBlank()) return type.getName() + "@datatype";
+            if (ic == null || ic.trim().isEmpty()) return type.getName() + "@datatype";
             return type.getName() + "@" + ic;
         }
         if (type instanceof EClass) return type.getName();
@@ -279,7 +292,6 @@ public final class EcoreToClassDiagramTransformer {
 
             } else {
                 // Each reference as its own edge
-                EClassifier targetType = ref.getEType();
                 String toId = resolveTarget(ref, needsQualifiedSet, inScope, opts, nodes, diagnostics);
                 if (toId == null) continue;
 
@@ -332,12 +344,10 @@ public final class EcoreToClassDiagramTransformer {
         for (Node n : nodes) {
             if (n.id().equals(id)) return;
         }
-        nodes.add(new Node(id, null, "external", List.of(), true));
+        nodes.add(new Node(id, null, "external", Collections.<String>emptyList(), true));
     }
 
     private String canonicalPairKey(EReference a, EReference b) {
-        String keyA = System.identityHashCode(a) + "";
-        String keyB = System.identityHashCode(b) + "";
         // use deterministic ordering based on containing class name + ref name
         String nameA = a.getEContainingClass().getName() + "." + a.getName();
         String nameB = b.getEContainingClass().getName() + "." + b.getName();

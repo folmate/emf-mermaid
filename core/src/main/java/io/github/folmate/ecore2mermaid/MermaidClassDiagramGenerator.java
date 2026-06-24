@@ -1,11 +1,11 @@
 package io.github.folmate.ecore2mermaid;
 
 import io.github.folmate.ecore2mermaid.emit.MermaidClassDiagramEmitter;
-import io.github.folmate.ecore2mermaid.ir.ClassDiagram;
 import io.github.folmate.ecore2mermaid.transform.EcoreToClassDiagramTransformer;
 import org.eclipse.emf.ecore.EPackage;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public final class MermaidClassDiagramGenerator {
@@ -14,7 +14,7 @@ public final class MermaidClassDiagramGenerator {
     private final MermaidClassDiagramEmitter emitter = new MermaidClassDiagramEmitter();
 
     public MermaidResult generate(EPackage pkg, GeneratorOptions options) {
-        return generate(List.of(pkg), options);
+        return generate(Collections.singletonList(pkg), options);
     }
 
     public MermaidResult generate(Collection<EPackage> packages, GeneratorOptions options) {

@@ -7,7 +7,7 @@ public final class MermaidClassDiagramEmitter {
     public String emit(ClassDiagram diagram) {
         StringBuilder sb = new StringBuilder();
 
-        if (diagram.theme() != null && !diagram.theme().isBlank()) {
+        if (diagram.theme() != null && !diagram.theme().trim().isEmpty()) {
             sb.append("%%{init: {'theme': '").append(diagram.theme()).append("'}}%%\n");
         }
 
@@ -43,10 +43,10 @@ public final class MermaidClassDiagramEmitter {
 
     private void emitEdge(StringBuilder sb, Edge edge) {
         switch (edge.kind()) {
-            case INHERITANCE  -> emitRelationship(sb, edge, "<|--");
-            case REALIZATION  -> emitRelationship(sb, edge, "<|..");
-            case COMPOSITION  -> emitRelationship(sb, edge, "*--");
-            case ASSOCIATION  -> emitRelationship(sb, edge, "-->");
+            case INHERITANCE:  emitRelationship(sb, edge, "<|--"); break;
+            case REALIZATION:  emitRelationship(sb, edge, "<|.."); break;
+            case COMPOSITION:  emitRelationship(sb, edge, "*--");  break;
+            case ASSOCIATION:  emitRelationship(sb, edge, "-->");  break;
         }
     }
 
