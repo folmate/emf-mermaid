@@ -1,8 +1,15 @@
-package io.github.folmate.ecore2mermaid;
+package io.github.folmate.ecore2mermaid.core;
 
 import org.eclipse.emf.ecore.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
+import io.github.folmate.ecore2mermaid.core.Ecore2Mermaid;
+import io.github.folmate.ecore2mermaid.core.EcoreLoader;
+import io.github.folmate.ecore2mermaid.core.GeneratorOptions;
+import io.github.folmate.ecore2mermaid.core.MermaidClassDiagramGenerator;
+import io.github.folmate.ecore2mermaid.core.MermaidResult;
+import io.github.folmate.ecore2mermaid.core.Severity;
 
 import java.io.IOException;
 import java.net.URISyntaxException;

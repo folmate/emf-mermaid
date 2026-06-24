@@ -3,7 +3,7 @@ package io.github.folmate.ecore2mermaid.cli;
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.ParameterException;
-import io.github.folmate.ecore2mermaid.GeneratorOptions;
+import io.github.folmate.ecore2mermaid.core.GeneratorOptions;
 
 import java.util.List;
 

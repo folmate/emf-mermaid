@@ -1,9 +1,8 @@
-package io.github.folmate.ecore2mermaid;
+package io.github.folmate.ecore2mermaid.core;
 
 import org.eclipse.emf.ecore.EPackage;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 

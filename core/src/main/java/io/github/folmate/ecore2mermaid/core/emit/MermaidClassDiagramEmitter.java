@@ -1,6 +1,6 @@
-package io.github.folmate.ecore2mermaid.emit;
+package io.github.folmate.ecore2mermaid.core.emit;
 
-import io.github.folmate.ecore2mermaid.ir.*;
+import io.github.folmate.ecore2mermaid.core.ir.*;
 
 public final class MermaidClassDiagramEmitter {
 

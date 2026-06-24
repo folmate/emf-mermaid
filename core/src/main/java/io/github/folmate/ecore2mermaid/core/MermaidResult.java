@@ -1,4 +1,4 @@
-package io.github.folmate.ecore2mermaid;
+package io.github.folmate.ecore2mermaid.core;
 
 import java.util.List;
 import java.util.Objects;

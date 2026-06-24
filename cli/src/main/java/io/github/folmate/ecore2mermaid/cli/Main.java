@@ -1,7 +1,9 @@
 package io.github.folmate.ecore2mermaid.cli;
 
 import com.beust.jcommander.ParameterException;
-import io.github.folmate.ecore2mermaid.*;
+import io.github.folmate.ecore2mermaid.core.Ecore2Mermaid;
+import io.github.folmate.ecore2mermaid.core.EcoreLoadException;
+import io.github.folmate.ecore2mermaid.core.MermaidResult;
 
 import java.io.IOException;
 import java.io.OutputStreamWriter;
